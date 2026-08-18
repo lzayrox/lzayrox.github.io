@@ -1,0 +1,165 @@
+<section class="contact reveal-ready" id="contact" data-reveal-section>
+    <div class="section-header">
+        <span>04 /</span>
+        <h2>Contact</h2>
+    </div>
+
+    <div class="contact-content">
+        <p class="contact-title">
+            Interested in software, simulation or computational modeling?
+        </p>
+
+        <p class="contact-description">
+            Feel free to reach out if you'd like to discuss a project, research
+            idea or collaboration.
+        </p>
+
+        <div class="contact-links">
+            <a
+                href="https://github.com/lzayrox"
+                target="_blank"
+                rel="noreferrer"
+            >
+                GitHub ↗
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/humberto-llinas-jr-959a8220b/"
+                target="_blank"
+                rel="noreferrer"
+            >
+                LinkedIn ↗
+            </a>
+
+            <a href="mailto:humbertollinasjr@gmail.com"> Email ↗ </a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <span>Humberto Llinás</span>
+    <span>© 2026</span>
+</footer>
+
+<style>
+    .contact {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 0;
+
+		width: min(calc(100% - 2rem), var(--content-width));
+        margin: 0 auto 1.5rem;
+		padding: 0 var(--page-gutter);
+
+		border: 1px solid var(--color-border);
+		background: color-mix(in srgb, var(--color-bg) 94%, transparent);
+		backdrop-filter: blur(8px);
+    }
+
+    .section-header {
+        display: flex;
+        gap: 0.75rem;
+        align-items: baseline;
+		padding: 6rem 4rem 6rem 0;
+    }
+
+    .section-header span {
+        font-size: 0.8rem;
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+    }
+
+    h2 {
+        margin: 0;
+
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+    }
+
+    .contact-content {
+        max-width: 700px;
+		padding: 6rem 0 6rem 4rem;
+		border-left: 1px solid var(--color-border);
+    }
+
+    .contact-title {
+        margin: 0;
+
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+    }
+
+    .contact-description {
+        max-width: 520px;
+
+        margin: 2rem 0 0;
+
+        font-size: 1.05rem;
+        line-height: 1.7;
+
+		color: var(--color-muted);
+    }
+
+    .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        margin-top: 3rem;
+    }
+
+    .contact-links a {
+        color: inherit;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .contact-links a:hover {
+		color: var(--color-accent-hover);
+    }
+
+	.contact-links a {
+		transition: color var(--transition);
+	}
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+
+		max-width: var(--content-width);
+        margin: 0 auto;
+		padding: 2rem var(--page-gutter);
+
+		border-top: 1px solid var(--color-border);
+
+        font-size: 0.8rem;
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+    }
+
+    @media (max-width: 768px) {
+        .contact {
+            grid-template-columns: 1fr;
+            gap: 0;
+
+			padding: 0 var(--page-gutter);
+        }
+
+		.section-header {
+			padding: 4rem 0 2rem;
+		}
+
+		.contact-content {
+			padding: 2.5rem 0 4rem;
+			border-top: 1px solid var(--color-border);
+			border-left: 0;
+		}
+
+        .footer {
+			padding: 2rem var(--page-gutter);
+        }
+    }
+</style>

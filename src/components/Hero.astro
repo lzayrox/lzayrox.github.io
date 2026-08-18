@@ -1,0 +1,111 @@
+<section class="hero">
+    <p class="eyebrow">Hello, I'm Humberto</p>
+
+    <h1>
+        Software Engineering
+        <br />
+        & Computational Modeling
+    </h1>
+
+    <p class="description">
+        I build software systems and explore simulation, scientific computing,
+        machine learning and data-driven methods.
+    </p>
+
+    <p class="areas">Simulation · Scientific Computing · Machine Learning</p>
+
+    <div class="links">
+        <a href="https://github.com/lzayrox" target="_blank" rel="noreferrer"> GitHub ↗ </a>
+
+        <a
+            href="https://www.linkedin.com/in/humberto-llinas-jr-959a8220b/"
+            target="_blank"
+            rel="noreferrer"
+        >
+            LinkedIn ↗
+        </a>
+    </div>
+</section>
+
+<style>
+    .hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 100vh;
+		min-height: 100svh;
+		max-width: var(--content-width);
+        margin: 0 auto;
+		padding: clamp(7rem, 12vh, 10rem) var(--page-gutter);
+    }
+
+    .eyebrow {
+        margin-bottom: 1.5rem;
+
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+		font-family: var(--font-mono);
+		color: var(--color-accent);
+    }
+
+    h1 {
+        margin: 0;
+
+        max-width: 900px;
+
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        font-weight: 600;
+    }
+
+    .description {
+        max-width: 600px;
+
+        margin-top: 3rem;
+
+        font-size: 1.15rem;
+        line-height: 1.7;
+
+		color: var(--color-muted);
+    }
+
+    .areas {
+        margin-top: 1.5rem;
+
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+    }
+
+    .links {
+        display: flex;
+        gap: 2rem;
+
+        margin-top: 2rem;
+    }
+
+    .links a {
+        color: inherit;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+	.links a:hover {
+		color: var(--color-accent-hover);
+    }
+
+	.links a {
+		transition: color var(--transition);
+	}
+
+	@media (max-width: 460px) {
+		.hero {
+			padding-top: 9rem;
+			padding-bottom: 5rem;
+		}
+	}
+</style>

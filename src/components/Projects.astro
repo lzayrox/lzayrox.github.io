@@ -1,0 +1,378 @@
+---
+import featuredProjects from "../data/projects.json";
+
+const username = "lzayrox";
+
+interface GitHubRepo {
+	name: string;
+	html_url: string;
+	homepage: string | null;
+	language: string | null;
+	stargazers_count: number;
+	forks_count: number;
+	topics: string[];
+}
+
+interface FeaturedProject {
+	repo: string | null;
+	title: string;
+	category: string;
+	description: string;
+	technologies: string[];
+	image?: string | null;
+	featured: boolean;
+}
+
+let repos: GitHubRepo[] = [];
+
+try {
+	const response = await fetch(
+		`https://api.github.com/users/${username}/repos?per_page=100`,
+		{
+			headers: { Accept: "application/vnd.github+json" },
+			signal: AbortSignal.timeout(5000),
+		},
+	);
+
+	if (!response.ok) {
+		throw new Error(`GitHub API responded with ${response.status}`);
+	}
+
+	repos = await response.json();
+} catch (error) {
+	const reason = error instanceof Error ? error.message : "unknown error";
+	console.warn(
+		`GitHub metadata is unavailable (${reason}); using local project data.`,
+	);
+}
+
+const projects = (featuredProjects as FeaturedProject[])
+	.filter((project) => project.featured)
+	.map((project) => {
+		const github = project.repo
+			? repos.find((repo) => repo.name === project.repo)
+			: undefined;
+
+		return {
+			...project,
+			github: github ?? null,
+			githubUrl: project.repo
+				? (github?.html_url ??
+					`https://github.com/${username}/${project.repo}`)
+				: null,
+		};
+	});
+---
+
+<section class="projects reveal-ready" id="projects" data-reveal-section>
+	<div class="section-header">
+		<span>02 /</span>
+		<h2>Selected Projects</h2>
+	</div>
+
+	<div class="project-list">
+		{
+			projects.map((project, index) => (
+				<article
+					class:list={[
+						"project",
+						{ "project--without-image": !project.image },
+					]}
+				>
+					<div class="project-number">
+						{String(index + 1).padStart(2, "0")}
+					</div>
+
+					{project.image && (
+						<div class="project-image">
+							<img
+								src={project.image}
+								alt={`${project.title} preview`}
+								loading="lazy"
+							/>
+						</div>
+					)}
+
+					<div class="project-content">
+						<p class="category">{project.category}</p>
+
+						<h3>{project.title}</h3>
+
+						<p class="description">{project.description}</p>
+
+						<div class="technologies">
+							{project.technologies.map((technology) => (
+								<span>{technology}</span>
+							))}
+						</div>
+
+						{project.github && (
+							<div class="project-meta">
+								{project.github.language && (
+									<span>{project.github.language}</span>
+								)}
+
+								<span>★ {project.github.stargazers_count}</span>
+
+								<span>Forks {project.github.forks_count}</span>
+							</div>
+						)}
+
+						<div class="project-links">
+							{project.githubUrl && (
+								<a
+									href={project.githubUrl}
+									target="_blank"
+									rel="noreferrer"
+								>
+									GitHub ↗
+								</a>
+							)}
+
+							{project.github?.homepage && (
+								<a
+									href={project.github.homepage}
+									target="_blank"
+									rel="noreferrer"
+								>
+									Live Demo ↗
+								</a>
+							)}
+						</div>
+					</div>
+				</article>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.projects {
+		width: min(calc(100% - 2rem), var(--content-width));
+		margin: 0 auto 1.5rem;
+		padding: 0 var(--page-gutter);
+
+		border: 1px solid var(--color-border);
+		background: color-mix(in srgb, var(--color-bg) 94%, transparent);
+		backdrop-filter: blur(8px);
+	}
+
+	.section-header {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
+
+		margin-bottom: 0;
+		padding: 4rem 0 2.5rem;
+	}
+
+	.section-header span {
+		font-size: 0.8rem;
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+	}
+
+	h2 {
+		margin: 0;
+
+		font-size: 0.9rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+	}
+
+	.project {
+		display: grid;
+		grid-template-columns: 60px minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+		gap: 3rem;
+		padding: 4rem 0;
+
+		border-top: 1px solid var(--color-border);
+	}
+
+	.project--without-image {
+		display: block;
+	}
+
+	.project--without-image .project-content {
+		max-width: none;
+	}
+
+	.project--without-image .description {
+		max-width: 800px;
+	}
+
+	.project--without-image .project-number {
+		margin-bottom: 1.5rem;
+	}
+
+	.project-number {
+		padding-top: 0.25rem;
+
+		font-size: 0.8rem;
+		letter-spacing: 0.08em;
+
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+	}
+
+	.project-image {
+		width: 100%;
+	}
+
+	.project-image img {
+		display: block;
+
+		width: 100%;
+		aspect-ratio: 16 / 10;
+
+		object-fit: cover;
+
+		border-radius: 4px;
+	}
+
+	.project-content {
+		max-width: 650px;
+	}
+
+	.category {
+		margin: 0 0 1rem;
+
+		font-size: 0.75rem;
+		font-weight: 500;
+
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+
+		font-family: var(--font-mono);
+		color: var(--color-accent);
+	}
+
+	h3 {
+		margin: 0;
+
+		font-size: clamp(2rem, 4vw, 3.75rem);
+		line-height: 1;
+		letter-spacing: -0.03em;
+		font-weight: 500;
+	}
+
+	.description {
+		max-width: 580px;
+
+		margin: 1.75rem 0 0;
+
+		font-size: 1.05rem;
+		line-height: 1.7;
+
+		color: var(--color-muted);
+	}
+
+	.technologies {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+
+		margin: 1.75rem 0;
+	}
+
+	.technologies span {
+		padding: 0.4rem 0.75rem;
+
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+
+		font-size: 0.75rem;
+		line-height: 1;
+
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+	}
+
+	.project-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+
+		margin-bottom: 2rem;
+
+		font-size: 0.8rem;
+
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+	}
+
+	.project-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+	}
+
+	.project-links a {
+		color: inherit;
+
+		font-size: 0.95rem;
+		font-weight: 500;
+
+		text-decoration: none;
+
+		transition: color var(--transition);
+	}
+
+	.project-links a:hover {
+		color: var(--color-accent-hover);
+	}
+
+	@media (max-width: 1000px) {
+		.project {
+			grid-template-columns: 50px 1fr;
+		}
+
+		.project-image {
+			grid-column: 2;
+		}
+
+		.project-content {
+			grid-column: 2;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.projects {
+			padding: 0 var(--page-gutter);
+		}
+
+		.section-header {
+			padding: 3.5rem 0 2rem;
+		}
+
+		.project {
+			display: block;
+			padding: 3.5rem 0;
+		}
+
+		.project-number {
+			margin-bottom: 1.5rem;
+		}
+
+		.project-image {
+			margin-bottom: 2rem;
+		}
+
+		h3 {
+			font-size: clamp(2rem, 10vw, 3rem);
+		}
+
+		.description {
+			font-size: 1rem;
+		}
+
+		.project-meta {
+			gap: 1rem;
+		}
+
+		.project-links {
+			gap: 1.5rem;
+		}
+	}
+</style>

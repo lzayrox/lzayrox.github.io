@@ -1,0 +1,136 @@
+<section class="skills reveal-ready" id="skills" data-reveal-section>
+    <div class="section-header">
+        <span>03 /</span>
+        <h2>Skills</h2>
+    </div>
+
+    <div class="skills-grid">
+        <div class="skill-group">
+            <h3>Software Development</h3>
+            <p>C++ · Java · JavaScript / TypeScript · Python · R</p>
+        </div>
+
+        <div class="skill-group">
+            <h3>Scientific Computing</h3>
+            <p>Numerical Methods · Simulation · MPI · Computational Modeling</p>
+        </div>
+
+        <div class="skill-group">
+            <h3>Machine Learning</h3>
+            <p>
+                Neural Networks · Optimization · Gradient Descent · Data
+                Analysis
+            </p>
+        </div>
+
+        <div class="skill-group">
+            <h3>Tools & Infrastructure</h3>
+            <p>Git · GitHub · Docker · Linux · GitHub Actions</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .skills {
+		width: min(calc(100% - 2rem), var(--content-width));
+        margin: 0 auto 1.5rem;
+		padding: 0 var(--page-gutter);
+
+		border: 1px solid var(--color-border);
+		background: color-mix(in srgb, var(--color-bg) 94%, transparent);
+		backdrop-filter: blur(8px);
+    }
+
+    .section-header {
+        display: flex;
+        gap: 0.75rem;
+        align-items: baseline;
+
+        margin-bottom: 0;
+		padding: 4rem 0 2.5rem;
+    }
+
+    .section-header span {
+        font-size: 0.8rem;
+		font-family: var(--font-mono);
+		color: var(--color-muted);
+    }
+
+    h2 {
+        margin: 0;
+
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+		border-top: 1px solid var(--color-border);
+    }
+
+    .skill-group {
+        padding: 3rem 2rem 3rem 0;
+
+		border-bottom: 1px solid var(--color-border);
+    }
+
+    .skill-group:nth-child(odd) {
+		border-right: 1px solid var(--color-border);
+    }
+
+    .skill-group:nth-child(even) {
+        padding-left: 3rem;
+    }
+
+	.skill-group:nth-last-child(-n + 2) {
+		border-bottom: 0;
+	}
+
+    h3 {
+        margin: 0 0 1.5rem;
+
+        font-size: clamp(1.5rem, 3vw, 2.3rem);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+    }
+
+    .skill-group p {
+        max-width: 480px;
+
+        margin: 0;
+
+        font-size: 1rem;
+        line-height: 1.8;
+
+		color: var(--color-muted);
+    }
+
+    @media (max-width: 768px) {
+        .skills {
+			padding: 0 var(--page-gutter);
+        }
+
+		.section-header {
+			padding: 3.5rem 0 2rem;
+		}
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .skill-group,
+        .skill-group:nth-child(even) {
+            padding: 2.5rem 0;
+            border-right: none;
+			border-bottom: 1px solid var(--color-border);
+        }
+
+		.skill-group:last-child {
+			border-bottom: 0;
+		}
+    }
+</style>
