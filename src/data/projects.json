@@ -3,7 +3,7 @@
     "repo": null,
     "title": "SPH Fluid Simulation",
     "category": "Modeling & Simulation",
-    "description": "An interactive particle-based fluid simulation built on the custom engine, using Smoothed Particle Hydrodynamics, spatial neighbor search and parallel computation to model density and pressure in real time.",
+    "description": "A real-time 2D fluid simulation using Smoothed Particle Hydrodynamics, a sorted uniform-grid neighbor lookup and OpenMP-parallel particle updates for density, pressure and collision response.",
     "technologies": [
       "C++20",
       "SPH",
@@ -12,13 +12,14 @@
       "Spatial Grid"
     ],
     "image": "/projects/sph-fluid-simulation.webp",
+    "page": "/projects/sph-fluid-simulation",
     "featured": true
   },
   {
     "repo": null,
     "title": "Physics & Simulation Engine",
     "category": "Modeling & Simulation",
-    "description": "A custom C++20 engine for building interactive two-dimensional simulations, featuring a fixed-timestep application loop, batched OpenGL rendering, spatial data structures and real-time debugging tools.",
+    "description": "A custom C++20 runtime for interactive 2D simulations, with fixed-timestep physics, batched line/rectangle/circle rendering, an editor camera and ImGui controls for live debugging.",
     "technologies": [
       "C++20",
       "OpenGL",
@@ -27,6 +28,7 @@
       "CMake"
     ],
     "image": null,
+    "page": "/projects/physics-simulation-engine",
     "featured": true
   },
   {

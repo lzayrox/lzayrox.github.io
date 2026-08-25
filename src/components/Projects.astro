@@ -1,5 +1,6 @@
 ---
 import featuredProjects from "../data/projects.json";
+import SectionContainer from "./SectionContainer.astro";
 
 const username = "lzayrox";
 
@@ -20,6 +21,7 @@ interface FeaturedProject {
 	description: string;
 	technologies: string[];
 	image?: string | null;
+	page: string | null;
 	featured: boolean;
 }
 
@@ -64,11 +66,7 @@ const projects = (featuredProjects as FeaturedProject[])
 	});
 ---
 
-<section class="projects reveal-ready" id="projects" data-reveal-section>
-	<div class="section-header">
-		<span>02 /</span>
-		<h2>Selected Projects</h2>
-	</div>
+<SectionContainer id="projects" index="02" title="Selected Projects">
 
 	<div class="project-list">
 		{
@@ -138,49 +136,19 @@ const projects = (featuredProjects as FeaturedProject[])
 									Live Demo ↗
 								</a>
 							)}
+
+							{project.page && (
+								<a href={project.page}>Case study →</a>
+							)}
 						</div>
 					</div>
 				</article>
 			))
 		}
 	</div>
-</section>
+</SectionContainer>
 
 <style>
-	.projects {
-		width: min(calc(100% - 2rem), var(--content-width));
-		margin: 0 auto 1.5rem;
-		padding: 0 var(--page-gutter);
-
-		border: 1px solid var(--color-border);
-		background: color-mix(in srgb, var(--color-bg) 94%, transparent);
-		backdrop-filter: blur(8px);
-	}
-
-	.section-header {
-		display: flex;
-		align-items: baseline;
-		gap: 0.75rem;
-
-		margin-bottom: 0;
-		padding: 4rem 0 2.5rem;
-	}
-
-	.section-header span {
-		font-size: 0.8rem;
-		font-family: var(--font-mono);
-		color: var(--color-muted);
-	}
-
-	h2 {
-		margin: 0;
-
-		font-size: 0.9rem;
-		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
-	}
-
 	.project {
 		display: grid;
 		grid-template-columns: 60px minmax(280px, 0.9fr) minmax(320px, 1.1fr);
@@ -338,14 +306,6 @@ const projects = (featuredProjects as FeaturedProject[])
 	}
 
 	@media (max-width: 768px) {
-		.projects {
-			padding: 0 var(--page-gutter);
-		}
-
-		.section-header {
-			padding: 3.5rem 0 2rem;
-		}
-
 		.project {
 			display: block;
 			padding: 3.5rem 0;

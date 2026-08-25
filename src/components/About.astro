@@ -1,8 +1,8 @@
-<section class="about reveal-ready" id="about" data-reveal-section>
-  <div class="about-header">
-    <span>01 /</span>
-    <h2>About</h2>
-  </div>
+---
+import SectionContainer from "./SectionContainer.astro";
+---
+
+<SectionContainer id="about" index="01" title="About" layout="split">
 
   <div class="about-content">
     <p class="lead">
@@ -22,49 +22,9 @@
       into computational experiments.
     </p>
   </div>
-</section>
+</SectionContainer>
 
 <style>
-  .about {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 0;
-
-	position: relative;
-	z-index: 2;
-	width: min(calc(100% - 2rem), var(--content-width));
-    margin: 1.5rem auto;
-	padding: 0 var(--page-gutter);
-
-	border: 1px solid var(--color-border);
-	background: color-mix(in srgb, var(--color-bg) 94%, transparent);
-	backdrop-filter: blur(8px);
-	box-shadow: 0 1.25rem 3.5rem rgb(0 0 0 / 18%);
-  }
-
-
-  .about-header {
-    display: flex;
-    gap: 0.75rem;
-    align-items: baseline;
-	padding: 6rem 4rem 6rem 0;
-  }
-
-  .about-header span {
-    font-size: 0.8rem;
-	font-family: var(--font-mono);
-	color: var(--color-muted);
-  }
-
-  h2 {
-    margin: 0;
-
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
   .about-content {
     max-width: 650px;
 	padding: 6rem 0 4.5rem 4rem;
@@ -89,17 +49,6 @@
   }
 
   @media (max-width: 768px) {
-    .about {
-      grid-template-columns: 1fr;
-      gap: 0;
-
-		padding: 0 var(--page-gutter);
-    }
-
-	.about-header {
-		padding: 4rem 0 2rem;
-	}
-
 	.about-content {
 		padding: 2.5rem 0 3rem;
 		border-top: 1px solid var(--color-border);

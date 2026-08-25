@@ -1,14 +1,14 @@
 <header class="header" data-header>
 	<div class="header__inner">
-		<a class="brand" href="#top" aria-label="Humberto Llinás — ir al inicio">
+		<a class="brand" href="/#top" aria-label="Humberto Llinás — ir al inicio">
 			Humberto Llinás
 		</a>
 
 		<nav class="nav" aria-label="Navegación principal">
-			<a href="#about">About</a>
-			<a href="#projects">Projects</a>
-			<a href="#skills">Skills</a>
-			<a href="#contact">Contact</a>
+			<a href="/#about">About</a>
+			<a href="/#projects">Projects</a>
+			<a href="/#skills">Skills</a>
+			<a href="/#contact">Contact</a>
 		</nav>
 	</div>
 </header>
@@ -22,9 +22,14 @@
 
 	const updateHeader = () => {
 		header?.classList.toggle("header--scrolled", window.scrollY > 12);
-		const current = [...sections]
-			.reverse()
-			.find((section) => section.getBoundingClientRect().top <= 140);
+		const activationLine = Math.max(
+			(header?.getBoundingClientRect().height ?? 0) + 32,
+			window.innerHeight * 0.4,
+		);
+		const current = sections.find((section) => {
+			const { top, bottom } = section.getBoundingClientRect();
+			return top <= activationLine && bottom > activationLine;
+		});
 
 		links.forEach((link) => {
 			const isActive = current?.id === link.hash.slice(1);
@@ -36,6 +41,7 @@
 
 	updateHeader();
 	window.addEventListener("scroll", updateHeader, { passive: true });
+	window.addEventListener("resize", updateHeader, { passive: true });
 </script>
 
 <style>

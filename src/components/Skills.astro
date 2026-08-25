@@ -1,8 +1,8 @@
-<section class="skills reveal-ready" id="skills" data-reveal-section>
-    <div class="section-header">
-        <span>03 /</span>
-        <h2>Skills</h2>
-    </div>
+---
+import SectionContainer from "./SectionContainer.astro";
+---
+
+<SectionContainer id="skills" index="03" title="Skills">
 
     <div class="skills-grid">
         <div class="skill-group">
@@ -28,43 +28,9 @@
             <p>Git · GitHub · Docker · Linux · GitHub Actions</p>
         </div>
     </div>
-</section>
+</SectionContainer>
 
 <style>
-    .skills {
-		width: min(calc(100% - 2rem), var(--content-width));
-        margin: 0 auto 1.5rem;
-		padding: 0 var(--page-gutter);
-
-		border: 1px solid var(--color-border);
-		background: color-mix(in srgb, var(--color-bg) 94%, transparent);
-		backdrop-filter: blur(8px);
-    }
-
-    .section-header {
-        display: flex;
-        gap: 0.75rem;
-        align-items: baseline;
-
-        margin-bottom: 0;
-		padding: 4rem 0 2.5rem;
-    }
-
-    .section-header span {
-        font-size: 0.8rem;
-		font-family: var(--font-mono);
-		color: var(--color-muted);
-    }
-
-    h2 {
-        margin: 0;
-
-        font-size: 0.9rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-    }
-
     .skills-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -110,14 +76,6 @@
     }
 
     @media (max-width: 768px) {
-        .skills {
-			padding: 0 var(--page-gutter);
-        }
-
-		.section-header {
-			padding: 3.5rem 0 2rem;
-		}
-
         .skills-grid {
             grid-template-columns: 1fr;
         }
