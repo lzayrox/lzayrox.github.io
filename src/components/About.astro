@@ -3,23 +3,22 @@ import SectionContainer from "./SectionContainer.astro";
 ---
 
 <SectionContainer id="about" index="01" title="About" layout="split">
-
   <div class="about-content">
     <p class="lead">
-      I’m interested in building software to model,
-      simulate and understand complex systems.
+      I’m interested in building software to model, simulate and understand
+      complex systems.
     </p>
 
     <p>
-      I’m an undergraduate student in my eighth semester at Universidad del Norte. Curious by nature,
-      I’m drawn to the intersection of software engineering, computational modeling, scientific computing,
-      and machine learning.
+      I’m an undergraduate student in my eighth semester at Universidad del
+      Norte. Curious by nature, I’m drawn to the intersection of software
+      engineering, computational modeling, scientific computing, and machine
+      learning.
     </p>
 
     <p>
-      I enjoy exploring how algorithms, mathematical
-      models and software can be combined to turn ideas
-      into computational experiments.
+      I enjoy exploring how algorithms, mathematical models and software can be
+      combined to turn ideas into computational experiments.
     </p>
   </div>
 </SectionContainer>
@@ -27,8 +26,8 @@ import SectionContainer from "./SectionContainer.astro";
 <style>
   .about-content {
     max-width: 650px;
-	padding: 6rem 0 4.5rem 4rem;
-	border-left: 1px solid var(--color-border);
+    padding: 6rem 0 4.5rem 4rem;
+    border-left: 1px solid var(--color-border);
   }
 
   .about-content p {
@@ -37,7 +36,7 @@ import SectionContainer from "./SectionContainer.astro";
     font-size: 1.05rem;
     line-height: 1.7;
 
-	color: var(--color-muted);
+    color: var(--color-muted);
   }
 
   .about-content .lead {
@@ -49,11 +48,10 @@ import SectionContainer from "./SectionContainer.astro";
   }
 
   @media (max-width: 768px) {
-	.about-content {
-		padding: 2.5rem 0 3rem;
-		border-top: 1px solid var(--color-border);
-		border-left: 0;
-	}
+    .about-content {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid var(--color-border);
+      border-left: 0;
+    }
   }
-
 </style>
